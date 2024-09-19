@@ -1,19 +1,19 @@
 <?php
-    include 'data_base.php';
-    include 'models/ContactModel.php';
+    include '../data_base.php';
+    include '../models/ContactModel.php';
 
     class ContactController
     {
-        private $model;
+        protected $contact_model;
 
         public function __construct($pdo)
         {
-            $this->model = new ContactModel($pdo);
+            $this->contact_model = new ContactModel($pdo);
         }
 
         public function index()
         {
-            $contatos = $this->model
+            $contatos = $this->contact_model
                              ->getAll();
 
             include '../public/views/contact_list.php';
@@ -21,10 +21,10 @@
 
         public function show($id)
         {
-            $contato = $this->model
+            $contato = $this->contact_model
                             ->getById($id);
-                            
-            include '../public/views/contact_detail.php';
+
+            include 'public/views/contact_detail.php';
         }
     }
 ?>
