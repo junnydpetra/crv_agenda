@@ -72,25 +72,3 @@
         </form>
     </div>
 </div>
-<!-- Edite Modal -->
-<div id="contacteditContactModalModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>Atualizar Contato</h2>
-        <form action="/crv_agenda/public/index.php" method="POST" onsubmit="return validateForm()">
-            <input type="hidden" name="action" value="update">
-            <input type="hidden" id="con_id" name="con_id">
-            <div class="form-group">
-                <label for="con_name">Nome:</label>
-                <input type="text" id="con_name" name="con_name" required>
-            </div>
-            <div class="form-group">
-                <label for="con_phone_number">Telefone:</label>
-                <input type="text" id="con_phone_number" name="con_phone_number" required>
-            </div>
-            <div class="btn-container">
-                <button type="submit" class="btn-add">Atualizar</button>
-            </div>
-        </form>
-    </div>
-</div>

@@ -1,4 +1,14 @@
 $(document).ready(function() {
+    
+    function formatPhoneNumber(phoneNumber) {
+        phoneNumber = phoneNumber.replace(/\D/g, '');
+        if (phoneNumber.length === 11) {
+            return phoneNumber.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, '($1) $2 $3-$4');
+        } else {
+            return phoneNumber;
+        }
+    }
+
     $('#contactsTable').DataTable({
         "paging": true,
         "searching": true,
@@ -31,7 +41,7 @@ $(document).ready(function() {
                 window.location.href = "http://localhost/crv_agenda/public/index.php?action=delete&id=" + id;
             }
         });
-    };
+    };    
 
     window.openModal = function(action, contact = {}) {
         const modalTitle = document.querySelector('#contactModal h2');
@@ -48,7 +58,7 @@ $(document).ready(function() {
         } else if (action === 'edit') {
             modalTitle.innerText = 'Atualizar Contato';
             inputName.value = contact.name || '';
-            inputPhoneNumber.value = contact.phone || '';
+            inputPhoneNumber.value = contact.phone || ''; // Mantém a máscara
             hiddenIdInput.value = contact.id || ''; /* Define ID */
             document.querySelector('input[name="action"]').value = 'update'; /* Muda para update */
         }
@@ -71,7 +81,7 @@ $(document).ready(function() {
     window.validateForm = function() {
         const name = document.getElementById('con_name').value.trim();
         const phoneNumber = document.getElementById('con_phone_number').value.trim();
-    
+        
         const namePattern = /^[A-Za-z\s]{5,}$/;
         if (name === '' || !namePattern.test(name)) {
             const Toast = Swal.mixin({
@@ -113,7 +123,20 @@ $(document).ready(function() {
             });
             return false;
         }
+
+        document.getElementById('con_phone_number').value = phoneDigits;
     
         return true;
     };
+
+    var phoneNumberPost = document.getElementById("con_phone_number");
+
+        phoneNumberPost.addEventListener("input", () => {
+        
+            var cleanValue = phoneNumberPost.value.replace(/\D/g, "").substring(0,11);
+
+        
+
+        phoneNumberPost.value = cleanValue;
+    });
 });
