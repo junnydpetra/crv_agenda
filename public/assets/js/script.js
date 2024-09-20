@@ -64,4 +64,54 @@ $(document).ready(function() {
             modal.style.display = "none";
         }
     };
+
+    /* Validação de form */
+    window.validateForm = function() {
+        const name = document.getElementById('con_name').value.trim();
+        const phoneNumber = document.getElementById('con_phone_number').value.trim();
+    
+        const namePattern = /^[A-Za-z\s]{5,}$/;
+        if (name === '' || !namePattern.test(name)) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: "O nome deve ter no mínimo 5 letras e apenas caracteres não numéricos!"
+            });
+            return false;
+        }
+    
+        /* Validação do telefone */
+        const phoneDigits = phoneNumber.replace(/\D/g, '');
+        
+        if (phoneDigits.length < 11) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: "O telefone deve ter pelo menos 11 dígitos numéricos."
+            });
+            return false;
+        }
+    
+        return true;
+    };
 });

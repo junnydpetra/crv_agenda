@@ -56,12 +56,13 @@
 
         public function delete($id)
         {
+            /* Envia mensagem em URL para que seja exibida em toast */
             if ($this->contact_model->delete($id)) {
-                header("Location: /crv_agenda/public");
-                exit();
+                header("Location: /crv_agenda/public/index.php?action=list&message=Registro excluído com sucesso!");
             } else {
-                echo "Erro ao excluir contato.";
+                header("Location: /crv_agenda/public/index.php?action=list&message=Erro ao excluir o registro.");
             }
+            exit();
         }
 
         /* public function show($id)

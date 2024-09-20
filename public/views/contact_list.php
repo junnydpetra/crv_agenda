@@ -55,7 +55,7 @@
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>Adicionar Contato</h2>
-        <form action="/crv_agenda/public/index.php" method="POST">
+        <form action="/crv_agenda/public/index.php" method="POST" onsubmit="return validateForm()">
             <input type="hidden" name="action" value="create">
             <div class="form-group">
                 <label for="con_name">Nome:</label>
