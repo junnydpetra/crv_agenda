@@ -1,11 +1,11 @@
-/* Container para centralizar o conteúdo */
+/* Centralização de conteúdo */
 .container {
     width: 80%;
     margin: 0 auto; /* Centraliza horizontalmente */
     padding: 20px;
 }
 
-/* Cabeçalho para alinhar título e botão */
+/* Alinhar título e botão */
 .header {
     display: flex;
     justify-content: space-between;
@@ -14,7 +14,7 @@
 }
 
 /* Estilização do botão */
-.btn-add {
+.btn-add-register {
     background-color: #28a745;
     color: white;
     padding: 10px 20px;
@@ -62,17 +62,56 @@
 
 .modal-content {
     background-color: #fff;
-    margin: 15% auto;
+    margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 40%;
+    width: 80%;
+    max-width: 600px;
+    max-height: 80vh;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo */
+    overflow: auto;
+}
+
+.modal .btn-container {
+    width: 100%; /* Faz o contêiner ocupar toda a largura */
+    display: flex;
+    justify-content: center; /* Centraliza o botão */
+}
+
+button.btn-add {
+    width: 50%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.modal input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center; /* Centraliza o texto dentro do input */
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
+    color: #e71010;
+    float: left;
+    font-size: 40px;
     font-weight: bold;
 }
 
@@ -81,6 +120,23 @@
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Alinhamento filtro + controle de página */
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_length {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px; /* Espaçamento entre a linha e a tabela */
+}
+
+.dataTables_wrapper .dataTables_filter {
+    justify-content: flex-end;
+}
+
+.dataTables_wrapper .dataTables_length {
+    justify-content: flex-start;
 }
 
 /* Estilo adicional para ícones de ação */
@@ -99,4 +155,15 @@
 
 #btn_trash:hover {
     color: #c82333;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 95%; /* Ajusta a largura do container em telas menores */
+    }
+    
+    .modal-content {
+        width: 90%; /* Ajusta a largura do modal em telas menores */
+    }
 }
