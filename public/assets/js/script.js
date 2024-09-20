@@ -37,18 +37,20 @@ $(document).ready(function() {
         const modalTitle = document.querySelector('#contactModal h2');
         const inputName = document.getElementById('con_name');
         const inputPhoneNumber = document.getElementById('con_phone_number');
-        const buttonSave = document.querySelector('.btn-add');
+        const hiddenIdInput = document.getElementById('con_id');
 
         if (action === 'add') {
             modalTitle.innerText = 'Adicionar Contato';
             inputName.value = '';
             inputPhoneNumber.value = '';
-            buttonSave.innerText = 'Salvar';
+            hiddenIdInput.value = ''; /* Limpa ID */
+            document.querySelector('input[name="action"]').value = 'create';
         } else if (action === 'edit') {
             modalTitle.innerText = 'Atualizar Contato';
             inputName.value = contact.name || '';
             inputPhoneNumber.value = contact.phone || '';
-            buttonSave.innerText = 'Atualizar';
+            hiddenIdInput.value = contact.id || ''; /* Define ID */
+            document.querySelector('input[name="action"]').value = 'update'; /* Muda para update */
         }
 
         document.getElementById("contactModal").style.display = "block";

@@ -15,14 +15,14 @@
         {
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'create') {
         
-                $name = $_POST['con_name'] ?? '';
-                $phone = $_POST['con_phone_number'] ?? '';
+                $name = ($_POST['con_name']) ? $_POST['con_name'] : '';
+                $phone = ($_POST['con_phone_number']) ? $_POST['con_phone_number'] : '';
         
                 var_dump($name, $phone);
         
                 if ($this->contact_model->create($name, $phone)) {
                     var_dump($name, $phone);
-                    header("Location: /crv_agenda/public");
+                    header("Location: /");
                     exit();
                 } else {
                     echo "Erro ao criar contato.";
@@ -42,12 +42,14 @@
 
         public function update()
         {
-            $id = $_POST['con_id'] ?? '';
-            $name = $_POST['con_name'] ?? '';
-            $phone = $_POST['con_phone_number'] ?? '';
+            $id = ($_POST['con_id']) ? $_POST['con_id'] : '';
+            $name = ($_POST['con_name']) ? $_POST['con_name'] : '';
+            $phone = ($_POST['con_phone_number']) ? $_POST['con_phone_number'] : '';
+
+            //var_dump($id, $name, $phone);
 
             if ($this->contact_model->update($id, $name, $phone)) {
-                header("Location: /crv_agenda/controllers/ContactController.php");
+                header("Location: /");
                 exit();
             } else {
                 echo "Erro ao atualizar contato.";
@@ -56,21 +58,9 @@
 
         public function delete($id)
         {
-            /* Envia mensagem em URL para que seja exibida em toast */
-            if ($this->contact_model->delete($id)) {
-                header("Location: /crv_agenda/public/index.php?action=list&message=Registro excluído com sucesso!");
-            } else {
-                header("Location: /crv_agenda/public/index.php?action=list&message=Erro ao excluir o registro.");
-            }
+            if ($this->contact_model->delete($id))
+                header("Location: /");
             exit();
         }
-
-        /* public function show($id)
-        {
-            $contato = $this->contact_model
-                            ->getById($id);
-
-            include 'public/views/contact_detail.php';
-        } */
     }
 ?>

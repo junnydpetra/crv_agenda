@@ -2,14 +2,6 @@
     include '../controllers/ContactController.php';
 
     $contactController = new ContactController($pdo);
-    
-    /* if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-        if ($_POST['action'] === 'create') {
-            $contactController->create();
-        }
-    } else {
-        $contactController->index();
-    } */
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         switch ($_POST['action']) {
