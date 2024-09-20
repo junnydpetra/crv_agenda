@@ -28,7 +28,7 @@ $(document).ready(function() {
             confirmButtonText: "Confirmar!"
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "delete.php?id=" + id;
+                window.location.href = "http://localhost/crv_agenda/public/index.php?action=delete&id=" + id;
             }
         });
     };

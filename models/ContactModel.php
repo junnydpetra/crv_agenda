@@ -25,8 +25,13 @@ class ContactModel
 
     public function create($name, $phone)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO tab_contacts (con_name, con_phone_number) VALUES (?, ?)");
-        return $stmt->execute(array($name, $phone));
+        try {
+            $stmt = $this->pdo->prepare("INSERT INTO tab_contacts (con_name, con_phone_number) VALUES (?, ?)");
+            return $stmt->execute(array($name, $phone));
+        } catch (PDOException $e) {
+            echo "Erro: " . $e->getMessage();
+            return false;
+        }
     }
 
     public function update($id, $name, $phone)

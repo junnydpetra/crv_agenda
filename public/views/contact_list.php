@@ -55,21 +55,19 @@
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>Adicionar Contato</h2>
-        <form id="addContactForm" method="post" action="add_contact.php">
+        <form action="/crv_agenda/public/index.php" method="POST">
+            <input type="hidden" name="action" value="create">
             <div class="form-group">
                 <label for="con_name">Nome:</label>
                 <input type="text" id="con_name" name="con_name" required>
             </div>
-            
             <div class="form-group">
                 <label for="con_phone_number">Telefone:</label>
                 <input type="text" id="con_phone_number" name="con_phone_number" required>
             </div>
-            
             <div class="btn-container">
                 <button type="submit" class="btn-add">Salvar</button>
             </div>
-            <!-- <button type="submit" class="btn-add">Salvar</button> -->
         </form>
     </div>
 </div>
