@@ -33,7 +33,7 @@
                 <?php foreach ($contatos as $contato): ?>
                     <tr>
                         <td><?php echo htmlspecialchars($contato['con_id']); ?></td>
-                        <td><?php echo htmlspecialchars($contato['con_name']); ?></td>
+                        <td><?php echo htmlspecialchars(ucwords(strtolower($contato['con_name']))); ?></td>
                         <td><?php echo htmlspecialchars(formatPhoneNumber($contato['con_phone_number'])); ?></td>
                         <td>
                         <a id="btn_pencil" href="javascript:void(0);" onclick="openModal('edit', { id: '<?php echo htmlspecialchars($contato['con_id']); ?>', name: '<?php echo htmlspecialchars($contato['con_name']); ?>', phone: '<?php echo htmlspecialchars(formatPhoneNumber($contato['con_phone_number'])); ?>' })" title="Editar Contato">
